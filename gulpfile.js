@@ -1,9 +1,3 @@
-/**
- * Useful Gulp tutorials
- * - https://coder-coder.com/gulp-4-walk-through/
- * - https://github.com/gulpjs/gulp/blob/master/docs/recipes/minimal-browsersync-setup-with-gulp4.md
- */
-
 const { src, dest, parallel, watch, series } = require('gulp');
 const del = require('del');
 
@@ -53,7 +47,7 @@ const paths = {
 const clean = () => del(['dist']);
 
 /**
- * Copy main HTML file and update css/js query strings for cache bust purposes
+ * Copy main HTML file, update css/js query strings, replace template variables
  */
 function buildHtml() {
     var cbString = new Date().getTime();
@@ -72,7 +66,8 @@ function buildHtml() {
             return process.env.MY_SITE_NAME
         }))
         .pipe(replace(/DEPLOY_TIMESTAMP/g, function () {
-            return (new Date()).toLocaleString('en-US')
+            let now = new Date();
+            return now
         }))
         .pipe(dest(paths.html.dest));
 }

@@ -14,7 +14,7 @@
     <body>
         <h1>MY_SITE_NAME</h1>
 
-        <p>Deployed on DEPLOY_TIMESTAMP</p>
+        <p>Deployed on <script>document.write((new Date('DEPLOY_TIMESTAMP')).toLocaleString('en-US'))</script></p>
 
         <script type="text/javascript" src="/js/index.min.js?cache_bust="></script>
 
