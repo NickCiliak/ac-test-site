@@ -1,3 +1,7 @@
+[build]
+  publish = "dist/"
+  command = "gulp build"
+
 [template.environment]
   MY_ACCOUNT_ID = "Account ID for tracking code"
   MY_SITE_NAME = "Site name"
