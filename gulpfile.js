@@ -7,6 +7,9 @@
 const { src, dest, parallel, watch, series } = require('gulp');
 const del = require('del');
 
+// Load environment variables from .env file. Access using `process.env.VARIABLE_NAME`
+require('dotenv').config();
+
 // Html related
 var replace = require('gulp-replace');
 
@@ -55,9 +58,21 @@ const clean = () => del(['dist']);
 function buildHtml() {
     var cbString = new Date().getTime();
 
+    // copy robots.txt to dist
+    src('src/robots.txt').pipe(dest(paths.html.dest));
+
     return src([paths.html.src])
         .pipe(replace(/cache_bust=/g, function () {
             return "v=" + cbString;
+        }))
+        .pipe(replace(/MY_ACCOUNT_ID/g, function () {
+            return process.env.MY_ACCOUNT_ID
+        }))
+        .pipe(replace(/MY_SITE_NAME/g, function () {
+            return process.env.MY_SITE_NAME
+        }))
+        .pipe(replace(/DEPLOY_TIMESTAMP/g, function () {
+            return (new Date()).toLocaleString('en-US')
         }))
         .pipe(dest(paths.html.dest));
 }
@@ -85,7 +100,7 @@ function buildJs() {
         }))
         .pipe(dest('dist/js'))
         .pipe(uglify())
-        
+
         .pipe(rename('index.min.js'))
         .pipe(dest(paths.js.dest));
 }
