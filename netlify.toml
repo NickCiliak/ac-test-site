@@ -1,0 +1,3 @@
+[template.environment]
+  MY_ACCOUNT_ID = "Change to your account id"
+  MY_SITE_NAME = "Change to your site name"
