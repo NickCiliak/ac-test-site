@@ -38,7 +38,12 @@ const paths = {
     js: {
         src: 'src/js/*.js',
         dest: 'dist/js/'
-    }
+    },
+    img: {
+        src: 'src/img/*',
+        dest: 'dist/img/'
+    },
+
 };
 
 /**
@@ -54,6 +59,9 @@ function buildHtml() {
 
     // copy robots.txt to dist
     src('src/robots.txt').pipe(dest(paths.html.dest));
+
+    // copy image folder to dist
+    src(paths.img.src).pipe(dest(paths.img.dest));
 
     return src([paths.html.src])
         .pipe(replace(/cache_bust=/g, function () {
