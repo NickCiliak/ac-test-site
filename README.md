@@ -1,6 +1,8 @@
 # ac-test-site
 Quickly deploy a basic website to Netlify with the AC tracking code built in. Useful when you want to create multiple websites without the overhead of using a website builder.
 
+The "Contact" page on the site gives you an easy way to pass an email into the tracking code if you want to identify yourself as a certain contact.
+
 [View Demo](https://ac-test-site.netlify.app/)
 
 ## One-click deploy
